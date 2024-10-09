@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palindrome Checker</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            padding: 50px;
+            background: linear-gradient(135deg, #74ebd5, #acb6e5);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            margin: 0;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+        input {
+            padding: 15px;
+            width: 300px;
+            margin-right: 10px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        input:focus {
+            outline: none;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        button {
+            padding: 15px 25px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 25px;
+            background-color: #fff;
+            color: #333;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            margin-top: 20px; /* Added margin for spacing */
+        }
+        button:hover {
+            background-color: #ffe600;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 1.5em;
+            color: #fff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+        }
+        .sample-lists {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            max-width: 800px;
+            margin-top: 40px;
+        }
+        .sample-list {
+            text-align: left;
+            color: #fff;
+        }
+        .sample-list h2 {
+            margin: 0 0 10px 0;
+            font-size: 1.5em;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Palindrome Checker</h1>
+    <input type="text" id="text-input" placeholder="Enter text here">
+    <button id="check-btn">Check</button>
+    <div id="result"></div>
+
+    <div class="sample-lists">
+        <div class="sample-list">
+            <h2>Works</h2>
+            <ul>
+                <li>A</li>
+                <li>eye</li>
+                <li>_eye</li>
+                <li>race car</li>
+                <li>A man, a plan, a canal. Panama</li>
+                <li>never odd or even</li>
+                <li>My age is 0, 0 si ega ym.</li>
+                <li>0_0 (: /-\ :) 0-0</li>
+            </ul>
+        </div>
+        <div class="sample-list">
+            <h2>Failures</h2>
+            <ul>
+                <li>not a palindrome</li>
+                <li>nope</li>
+                <li>almostomla</li>
+                <li>1 eye for of 1 eye.</li>
+                <li>five|\_/|four</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("check-btn").addEventListener("click", function () {
+            const inputText = document.getElementById("text-input").value.trim();
+
+            // Check for empty input
+            if (!inputText) {
+                alert("Please input a value");
+                return;
+            }
+
+            // Normalize the string: remove non-alphanumeric characters and convert to lower case
+            const cleanedText = inputText.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+
+            // Check if the cleaned text is a palindrome
+            const isPalindrome = cleanedText === cleanedText.split('').reverse().join('');
+
+            // Prepare the result message
+            const resultMessage = isPalindrome 
+                ? `${inputText} is a palindrome` 
+                : `${inputText} is not a palindrome`;
+
+            // Display the result
+            document.getElementById("result").innerText = resultMessage;
+        });
+    </script>
+</body>
+</html>
